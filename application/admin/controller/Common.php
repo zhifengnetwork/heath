@@ -43,7 +43,7 @@ class Common extends Controller
         $this->auth();
         $this->view->mginfo     = $this->mginfo    = session('admin_user_auth');
         $leftmenu =  self::get_leftmenu();
-    
+   
         $this->view->lefts_menu  = self::lefts_menu($leftmenu);
         $this->view->left_menu   = $leftmenu;
         
@@ -101,9 +101,10 @@ class Common extends Controller
         static $url;
         //!$url && $url = strtolower(request()->controller() . '/' . request()->action());
         !$url && $url = request()->path();
-        if($url == '/'){
-           $url = 'index/index';
+        if($url == '/' || $url == ''){
+           $url = 'admin/index/index';
         }
+       
         // $url = str_replace('admin/', '', $url);
         $array = array();
         foreach ($left_menu as $key => &$val) {
